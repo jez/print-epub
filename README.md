@@ -6,7 +6,7 @@ Convert EPUB3 to PDF by simulating printing it with [PrinceXML].
 
 1.  `print-epub.sh` requires two tools on your system:
 
-    - [`prince-books`] or [`prince`]
+    - `prince-books` or `prince`
 
       This tool is used to convert the XHTML inside an PUB into a PDF. See
       <https://www.princexml.com/download/> and
@@ -17,7 +17,7 @@ Convert EPUB3 to PDF by simulating printing it with [PrinceXML].
       logo in a PDF "note" annotation on the first page. It can be deleted in
       PDF readers that allow editing annotations (like macOS Preview).
 
-    - [`xq`]
+    - `xq`
 
       See <https://github.com/sibprogrammer/xq>. This tool allows using XPath
       expressions to extract text from XML files, like those which store
