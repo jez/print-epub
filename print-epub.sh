@@ -192,7 +192,7 @@ fi
 #
 # Bump this any time the CSS files change, so that any old caches are busted
 #
-cache_version=2
+cache_version=3
 
 cache_dir="$XDG_CACHE_DIR/print-epub"
 if [[ "$cache_dir" != /* ]]; then
@@ -317,8 +317,8 @@ body {
 }
 
 body {
-  margin-right 8pt !important;
-  margin-left 8pt !important;
+  margin-right: 8pt !important;
+  margin-left: 8pt !important;
 }
 
 @page title-page {
