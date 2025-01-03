@@ -3,20 +3,22 @@
 set -euo pipefail
 
 inline_file() {
-  local source_file=$1
+  local source_file_basename=$1
+  local source_file=styles/$source_file_basename
   local target_file=$2
 
-  begin_marker="{{{ $source_file\$"
-  end_marker="}}} $source_file\$"
+  local begin_marker="{{{ $source_file_basename\$"
+  local end_marker="}}} $source_file_basename\$"
+
   sed -i.bak -e "
     /$begin_marker/,/$end_marker/ {
       /$begin_marker/ {
         p
         i\\
-    cat <<'EOF'
+  cat <<'EOF'
         r $source_file
         a\\
-  EOF
+EOF
       }
       /$end_marker/p
       d
@@ -27,8 +29,8 @@ inline_file() {
 }
 
 files=(
-  "styles/nav.css"
-  "styles/theme.css"
+  "nav.css"
+  "theme.css"
 )
 
 for file in "${files[@]}"; do

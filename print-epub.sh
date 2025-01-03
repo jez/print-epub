@@ -192,7 +192,7 @@ fi
 #
 # Bump this any time the CSS files change, so that any old caches are busted
 #
-cache_version=1
+cache_version=2
 
 cache_dir="$XDG_CACHE_DIR/print-epub"
 if [[ "$cache_dir" != /* ]]; then
@@ -235,52 +235,52 @@ nav[epub|type="toc"] {
 }
 
 /* Convert structure of nav toc to bookmarks. */
-[epub|type="toc"] a {
+nav[epub|type="toc"] a {
   prince-bookmark-target: attr(href);
 }
 
-[epub|type="toc"]
-  [epub|type="list"]
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
   a {
   prince-bookmark-level: 1;
 }
-[epub|type="toc"]
-  [epub|type="list"]
-  [epub|type="list"]
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
   a {
   prince-bookmark-level: 2;
 }
-[epub|type="toc"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
   a {
   prince-bookmark-level: 3;
 }
-[epub|type="toc"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
   a {
   prince-bookmark-level: 4;
 }
-[epub|type="toc"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
   a {
   prince-bookmark-level: 5;
 }
-[epub|type="toc"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
-  [epub|type="list"]
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
   a {
   prince-bookmark-level: 6;
 }
@@ -303,11 +303,22 @@ body {
 }
 
 @page {
+  /* Fits the size of an iPad Pro 12.9" display */
   size: 7.75in 10.25in !important;
+
   margin-bottom: 48pt !important;
   margin-top: 48pt !important;
-  margin-right: 48pt !important;
-  margin-left: 144pt !important;
+
+  /* Leaves just enough room for the PDF Expert floating tools */
+  margin-right: 40pt !important;
+  /* Large left margin for handwritten notes, while being able to rest palm on
+   * screen. Consolidates margin on one side. */
+  margin-left: 136pt !important;
+}
+
+body {
+  margin-right 8pt !important;
+  margin-left 8pt !important;
 }
 
 @page title-page {
@@ -331,6 +342,11 @@ img[epub|type="cover"] {
   margin: auto 0 !important;
 }
 
+html {
+  /* Using a soft hyphen character makes it less likely that the character
+   * shows up in selections, copy/paste, highlight annotations, searches, etc. */
+  -prince-hyphenate-character: '\0000AD';
+}
 p {
   /* This setting can easily double or triple the time it takes to render large PDFs. */
   hyphens: auto !important;

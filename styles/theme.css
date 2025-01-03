@@ -13,11 +13,22 @@ body {
 }
 
 @page {
+  /* Fits the size of an iPad Pro 12.9" display */
   size: 7.75in 10.25in !important;
+
   margin-bottom: 48pt !important;
   margin-top: 48pt !important;
-  margin-right: 48pt !important;
-  margin-left: 144pt !important;
+
+  /* Leaves just enough room for the PDF Expert floating tools */
+  margin-right: 40pt !important;
+  /* Large left margin for handwritten notes, while being able to rest palm on
+   * screen. Consolidates margin on one side. */
+  margin-left: 136pt !important;
+}
+
+body {
+  margin-right 8pt !important;
+  margin-left 8pt !important;
 }
 
 @page title-page {
