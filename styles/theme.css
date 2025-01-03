@@ -1,0 +1,52 @@
+@namespace epub url("http://www.idpf.org/2007/ops");
+
+/**
+ * If we want our user-defined stylesheets to behave as if they were specified
+ * after all author-defined stylesheets, it's the same as if we mark everything
+ * `!important`
+ *
+ * See https://www.princexml.com/doc/prince-input/#priority-determination
+ */
+
+body {
+  font-size: 15pt;
+}
+
+@page {
+  size: 7.75in 10.25in !important;
+  margin-bottom: 48pt !important;
+  margin-top: 48pt !important;
+  margin-right: 48pt !important;
+  margin-left: 144pt !important;
+}
+
+@page title-page {
+  margin: 0 !important;
+}
+
+img[epub|type="cover"] {
+  height: 10.25in !important;
+  width: 7.75in !important;
+  object-fit: contain !important;
+  page: title-page !important;
+  display: block !important;
+}
+
+[epub|type="titlepage"] {
+  page: title-page !important;
+
+  /* Vertically center on page */
+  /* https://www.princexml.com/doc/styling/#margins-of-page-and-column-floats */
+  -prince-float: top !important;
+  margin: auto 0 !important;
+}
+
+html {
+  /* Using a soft hyphen character makes it less likely that the character
+   * shows up in selections, copy/paste, highlight annotations, searches, etc. */
+  -prince-hyphenate-character: '\0000AD';
+}
+p {
+  /* This setting can easily double or triple the time it takes to render large PDFs. */
+  hyphens: auto !important;
+}

@@ -1,0 +1,147 @@
+/*
+ * There are my personal font preferences for PDFs.
+ *
+ * The print-epub.sh script is not set up to use it by default--you will have
+ * to specify it using --prince-arg manually:
+ *
+ *     --prince-arg --style=/abs/path/to/fonts.css
+ *
+ * Also, you will have to provide your own versions of the font files mentioned
+ * below. If you put them in the fonts/ folder at the mentioned filenames, it
+ * will find them (as long as the path to fonts.css is an absolute path.)
+ */
+
+body {
+  font-size: 15pt;
+}
+
+/*
+ * If we used local() instead of url(), we wouldn't be able to specify the
+ * Semibold weight for bold.
+ *
+ * bold is 700, semibold is 600, and since using local() defers font-style and
+ * font-weight choice to the system, we would always get Bold not Semibold.
+ *
+ * It seems the only way to change this is by pointing to the font file
+ * directly, so you can specify a specific style.
+ *
+ * TODO(jez) You've gone back to using local, because overriding the generic
+ * font families while also specifying font-weight/font-style prevents unicode
+ * glyph fallback from happening.
+ *
+ * TODO(jez) Can't even do that, because then it picks Garamond Premier Pro
+ * Caption instead of Regular for non-bold.
+ */
+
+/*
+@font-face {
+  font-family: serif;
+  src: local("Garamond Premier Pro");
+}
+
+@font-face {
+  font-family: sans-serif;
+  src: local("Cronos-Pro");
+}
+*/
+
+/* TODO(jez) This approach won't work for other languages, like CJK (or even emoji). */
+@font-face {
+  font-family: serif;
+  font-style: normal;
+  font-weight: normal;
+  src: local("Arial Unicode MS");
+}
+@font-face {
+  font-family: serif;
+  font-style: normal;
+  font-weight: bold;
+  src: url("Arial Unicode MS");
+}
+@font-face {
+  font-family: serif;
+  font-style: italic;
+  font-weight: normal;
+  src: url("Arial Unicode MS");
+}
+@font-face {
+  font-family: serif;
+  font-style: italic;
+  font-weight: bold;
+  src: url("Arial Unicode MS");
+}
+
+@font-face {
+  font-family: serif;
+  font-style: normal;
+  font-weight: normal;
+  src: url("Garamond Premier Pro Regular.otf");
+}
+@font-face {
+  font-family: serif;
+  font-style: normal;
+  font-weight: bold;
+  src: url("Garamond Premier Pro Semibold.otf");
+}
+@font-face {
+  font-family: serif;
+  font-style: italic;
+  font-weight: normal;
+  src: url("Garamond Premier Pro Regular Italic.otf");
+}
+@font-face {
+  font-family: serif;
+  font-style: italic;
+  font-weight: bold;
+  src: url("Garamond Premier Pro Semibold Italic.otf");
+}
+
+@font-face {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  src: local("Arial Unicode MS");
+}
+@font-face {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  src: url("Arial Unicode MS");
+}
+@font-face {
+  font-family: sans-serif;
+  font-style: italic;
+  font-weight: normal;
+  src: url("Arial Unicode MS");
+}
+@font-face {
+  font-family: sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  src: url("Arial Unicode MS");
+}
+
+@font-face {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  src: url("Cronos-Pro.otf");
+}
+@font-face {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  src: url("Cronos-Pro-Semibold.otf");
+}
+@font-face {
+  font-family: sans-serif;
+  font-style: italic;
+  font-weight: normal;
+  src: url("Cronos-Pro-Italic.otf");
+}
+@font-face {
+  font-family: sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  src: url("Cronos-Pro-Semibold-Italic.otf");
+}

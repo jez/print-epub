@@ -1,0 +1,70 @@
+@namespace epub url("http://www.idpf.org/2007/ops");
+
+/* Don't use Prince's inferred bookmark levels, because we have nav information */
+h1 { prince-bookmark-level: none; }
+h2 { prince-bookmark-level: none; }
+h3 { prince-bookmark-level: none; }
+h4 { prince-bookmark-level: none; }
+h5 { prince-bookmark-level: none; }
+h6 { prince-bookmark-level: none; }
+
+nav[epub|type="landmarks"],
+nav[epub|type="page-list"] {
+  display: none;
+}
+
+nav[epub|type="toc"] {
+  max-height: 0;
+  overflow: hidden;
+}
+
+/* Convert structure of nav toc to bookmarks. */
+nav[epub|type="toc"] a {
+  prince-bookmark-target: attr(href);
+}
+
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  a {
+  prince-bookmark-level: 1;
+}
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  a {
+  prince-bookmark-level: 2;
+}
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  a {
+  prince-bookmark-level: 3;
+}
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  a {
+  prince-bookmark-level: 4;
+}
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  a {
+  prince-bookmark-level: 5;
+}
+nav[epub|type="toc"]
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  :is([epub|type="list"], ol, ul)
+  a {
+  prince-bookmark-level: 6;
+}
